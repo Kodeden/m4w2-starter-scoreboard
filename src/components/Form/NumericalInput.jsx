@@ -7,7 +7,7 @@ export default function NumericalInput({
   handleBlur,
 }) {
   return (
-    <>
+    <div className="flex flex-col gap-y-2">
       <label htmlFor={id}>{placeholder}</label>
       <input
         id={id}
@@ -17,7 +17,7 @@ export default function NumericalInput({
         defaultValue={defaultValue}
         onBlur={handleBlur}
       />
-    </>
+    </div>
   );
 }
 
