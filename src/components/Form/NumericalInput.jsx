@@ -8,9 +8,7 @@ export default function NumericalInput({
 }) {
   return (
     <>
-      <label htmlFor={id} className="sr-only">
-        {placeholder}
-      </label>
+      <label htmlFor={id}>{placeholder}</label>
       <input
         id={id}
         type="number"
