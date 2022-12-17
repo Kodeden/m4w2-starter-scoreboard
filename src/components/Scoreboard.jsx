@@ -53,5 +53,5 @@ Scoreboard.defaultProps = {
   homeScore: 0,
   awayScore: 0,
   time: 900,
-  currentPeriod: 1,
+  currentPeriod: 0,
 };
