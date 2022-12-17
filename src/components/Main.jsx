@@ -14,6 +14,18 @@ export default function Main() {
   const [currentPeriod] = useState(1);
   const [minutes, setMinutes] = useState(15);
 
+  useEffect(() => {
+    if (minutes > 0) {
+      const id = setInterval(() => {
+        setMinutes((prev) => prev - 1);
+      }, 1000);
+
+      return () => {
+        clearInterval(id);
+      };
+    }
+  }, [minutes]);
+
   return (
     <main className="flex flex-col items-center gap-y-4 ">
       <Select
