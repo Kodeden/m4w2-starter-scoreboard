@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
+import { formatMinutesSeconds } from "../utils";
 
 export default function Scoreboard({
   homeScore,
   awayScore,
-  minutes,
+  time,
   currentPeriod,
 }) {
   return (
@@ -26,7 +27,7 @@ export default function Scoreboard({
         <div className="flex flex-col items-center">
           <h2 className="text-2xl">Time</h2>
           <p className="text-4xl" data-testid="time">
-            {minutes}:00
+            {formatMinutesSeconds(time)}
           </p>
         </div>
       </div>
@@ -44,13 +45,13 @@ export default function Scoreboard({
 Scoreboard.propTypes = {
   homeScore: PropTypes.number,
   awayScore: PropTypes.number,
-  minutes: PropTypes.number,
+  time: PropTypes.number,
   currentPeriod: PropTypes.number,
 };
 
 Scoreboard.defaultProps = {
   homeScore: 0,
   awayScore: 0,
-  minutes: 15,
+  time: 900,
   currentPeriod: 1,
 };

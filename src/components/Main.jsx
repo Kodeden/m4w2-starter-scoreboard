@@ -12,20 +12,20 @@ export default function Main() {
   const [homeScore, setHomeScore] = useState(0);
   const [periods, setPeriods] = useState(2);
   const [currentPeriod] = useState(1);
-  const [minutes, setMinutes] = useState(15);
+  const [timeRemaining, setTimeRemaining] = useState(900);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
   useEffect(() => {
-    if (isTimerRunning && minutes > 0) {
+    if (isTimerRunning && timeRemaining > 0) {
       const id = setInterval(() => {
-        setMinutes((prev) => prev - 1);
+        setTimeRemaining((prev) => prev - 1);
       }, 1000);
 
       return () => {
         clearInterval(id);
       };
     }
-  }, [minutes, isTimerRunning]);
+  }, [timeRemaining, isTimerRunning]);
 
   return (
     <main className="flex flex-col items-center gap-y-4 ">
@@ -52,9 +52,9 @@ export default function Main() {
       <NumericalInput
         id="time"
         placeholder="Time per period? (minutes)"
-        defaultValue={minutes}
+        defaultValue={timeRemaining / 60}
         handleBlur={(e) => {
-          setMinutes(e.target.value);
+          setTimeRemaining(e.target.value);
         }}
       />
 
@@ -78,7 +78,7 @@ export default function Main() {
       <Scoreboard
         homeScore={homeScore}
         awayScore={awayScore}
-        minutes={minutes}
+        time={timeRemaining}
         currentPeriod={currentPeriod}
       />
 
