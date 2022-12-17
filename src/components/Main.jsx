@@ -11,7 +11,8 @@ export default function Main() {
   const [awayScore, setAwayScore] = useState(0);
   const [homeScore, setHomeScore] = useState(0);
   const [periods, setPeriods] = useState(0);
-  const [currentPeriod] = useState(0);
+  const [timePerPeriod, setTimePerPeriod] = useState(0);
+  const [currentPeriod, setCurrentPeriod] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
@@ -44,8 +45,8 @@ export default function Main() {
         id="periods"
         placeholder="Number of Periods"
         defaultValue={periods}
-        handleBlur={(e) => {
-          setPeriods(e.target.value);
+        handleChange={(e) => {
+          setPeriods(Math.floor(Number(e.target.value)));
         }}
       />
 
@@ -54,7 +55,7 @@ export default function Main() {
         placeholder="Time per period? (minutes)"
         defaultValue={timeRemaining / 60}
         handleChange={(e) => {
-          setTimeRemaining(Math.floor(Number(e.target.value)) * 60);
+          setTimePerPeriod(Number(e.target.value));
         }}
       />
 
@@ -87,6 +88,7 @@ export default function Main() {
           colorClass="bg-green-500"
           text="Start"
           handleClick={() => {
+            if (timeRemaining === 0) setTimeRemaining(timePerPeriod * 60);
             setIsTimerRunning(true);
           }}
         />
@@ -95,6 +97,15 @@ export default function Main() {
           text="Stop"
           handleClick={() => {
             setIsTimerRunning(false);
+          }}
+        />
+
+        <Button
+          colorClass="bg-yellow-700"
+          text="Next Period"
+          handleClick={() => {
+            setCurrentPeriod((prev) => (prev < periods ? prev + 1 : prev));
+            setTimeRemaining(timePerPeriod * 60);
           }}
         />
       </div>
