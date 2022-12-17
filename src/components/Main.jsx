@@ -10,9 +10,9 @@ export default function Main() {
   const [homeAway, setHomeAway] = useState("away");
   const [awayScore, setAwayScore] = useState(0);
   const [homeScore, setHomeScore] = useState(0);
-  const [periods, setPeriods] = useState(2);
-  const [currentPeriod] = useState(1);
-  const [timeRemaining, setTimeRemaining] = useState(900);
+  const [periods, setPeriods] = useState(0);
+  const [currentPeriod] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
   useEffect(() => {
