@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CONFIG from "../config";
+import Button from "./Buttons/Button";
 import Buttons from "./Buttons/Buttons";
 import { HomeAwaySwitch, NumericalInput, Select } from "./Form";
 import Scoreboard from "./Scoreboard";
-import Button from "./Buttons/Button";
 
 export default function Main() {
   const [buttons, setButtons] = useState([]);
