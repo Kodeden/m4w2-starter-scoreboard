@@ -1,6 +1,7 @@
-import Main from "../components/Main";
-import { render, screen } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
+import Main from "../components/Main";
 import CONFIG from "../config";
 
 const choices = CONFIG.map((sport) => sport.sport);
@@ -117,4 +118,118 @@ it("updates the Home score only when home is toggled (updates Away score otherwi
 
   expect(homeScore).toHaveTextContent("1");
   expect(awayScore).toHaveTextContent("2");
+});
+
+it("should start the timer", async () => {
+  const user = userEvent.setup();
+  render(<Main />);
+
+  const periods = screen.getByLabelText("Number of Periods");
+  const minutes = screen.getByLabelText("Time per period? (minutes)");
+  const startBtn = screen.getByRole("button", { name: "Start" });
+
+  const timeDisplay = screen.getByTestId("time");
+
+  await user.type(periods, "1");
+  await user.type(minutes, "1");
+
+  await user.click(startBtn);
+
+  await waitFor(() => {
+    expect(timeDisplay).toHaveTextContent("1:00");
+  });
+
+  await waitFor(() => {
+    expect(timeDisplay).toHaveTextContent("0:59");
+  });
+});
+
+describe("Timer 🤡", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  test("timer reflects MM:SS accurately", async () => {
+    const user = userEvent.setup({ delay: null });
+    render(<Main />);
+
+    const minutes = screen.getByLabelText("Time per period? (minutes)");
+    const startBtn = screen.getByRole("button", { name: "Start" });
+
+    const timeDisplay = screen.getByTestId("time");
+
+    await user.type(minutes, "10");
+
+    await user.click(startBtn);
+
+    act(() => {
+      // 30 seconds
+      vi.advanceTimersByTime(30000);
+    });
+
+    await waitFor(() => {
+      expect(timeDisplay).toHaveTextContent("9:30");
+    });
+
+    act(() => {
+      // 6 more seconds
+      vi.advanceTimersByTime(6000);
+    });
+
+    await waitFor(() => {
+      expect(timeDisplay).toHaveTextContent("9:24");
+    });
+
+    act(() => {
+      // 1 second left! ⏳
+      vi.advanceTimersByTime(563000);
+    });
+
+    await waitFor(() => {
+      expect(timeDisplay).toHaveTextContent("0:01");
+    });
+  });
+
+  it("stops and restarts timer", async () => {
+    const user = userEvent.setup({ delay: null });
+    render(<Main />);
+
+    const periods = screen.getByLabelText("Number of Periods");
+    const minutes = screen.getByLabelText("Time per period? (minutes)");
+    const startBtn = screen.getByRole("button", { name: "Start" });
+    const stopBtn = screen.getByRole("button", { name: "Stop" });
+
+    const timeDisplay = screen.getByTestId("time");
+
+    await user.type(periods, "1");
+    await user.type(minutes, "1");
+
+    await user.click(startBtn);
+
+    act(() => {
+      // 30 seconds
+      vi.advanceTimersByTime(30000);
+    });
+
+    await user.click(stopBtn);
+
+    act(() => {
+      vi.advanceTimersByTime(10000);
+    });
+
+    await waitFor(() => {
+      // Even though 40 seconds have elapsed...
+      expect(timeDisplay).toHaveTextContent("0:30");
+    });
+
+    await user.click(startBtn);
+
+    act(() => {
+      vi.advanceTimersByTime(10000);
+    });
+
+    await waitFor(() => {
+      expect(timeDisplay).toHaveTextContent("0:20");
+    });
+  });
 });
