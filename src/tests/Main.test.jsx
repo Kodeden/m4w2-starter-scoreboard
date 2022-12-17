@@ -1,4 +1,4 @@
-import Main from "./Main";
+import Main from "../components/Main";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import CONFIG from "../config";
@@ -42,7 +42,7 @@ test("initial render", async () => {
   expect(awayScore).toHaveTextContent("0");
 
   expect(periodHeading).toBeInTheDocument();
-  expect(period).toHaveTextContent("1");
+  expect(period).toHaveTextContent("0");
 
   expect(timeHeading).toBeInTheDocument();
   expect(time).toBeInTheDocument();
