@@ -13,9 +13,10 @@ export default function Main() {
   const [periods, setPeriods] = useState(2);
   const [currentPeriod] = useState(1);
   const [minutes, setMinutes] = useState(15);
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
 
   useEffect(() => {
-    if (minutes > 0) {
+    if (isTimerRunning && minutes > 0) {
       const id = setInterval(() => {
         setMinutes((prev) => prev - 1);
       }, 1000);
@@ -24,7 +25,7 @@ export default function Main() {
         clearInterval(id);
       };
     }
-  }, [minutes]);
+  }, [minutes, isTimerRunning]);
 
   return (
     <main className="flex flex-col items-center gap-y-4 ">
@@ -82,8 +83,20 @@ export default function Main() {
       />
 
       <div className="flex gap-x-8">
-        <Button colorClass="bg-green-500" text="Start" handleClick={() => {}} />
-        <Button colorClass="bg-orange-500" text="Stop" handleClick={() => {}} />
+        <Button
+          colorClass="bg-green-500"
+          text="Start"
+          handleClick={() => {
+            setIsTimerRunning(true);
+          }}
+        />
+        <Button
+          colorClass="bg-orange-500"
+          text="Stop"
+          handleClick={() => {
+            setIsTimerRunning(false);
+          }}
+        />
       </div>
     </main>
   );
