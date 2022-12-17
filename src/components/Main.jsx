@@ -53,8 +53,8 @@ export default function Main() {
         id="time"
         placeholder="Time per period? (minutes)"
         defaultValue={timeRemaining / 60}
-        handleBlur={(e) => {
-          setTimeRemaining(e.target.value);
+        handleChange={(e) => {
+          setTimeRemaining(Math.floor(Number(e.target.value)) * 60);
         }}
       />
 

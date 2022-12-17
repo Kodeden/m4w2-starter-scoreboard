@@ -4,7 +4,7 @@ export default function NumericalInput({
   id,
   placeholder,
   defaultValue,
-  handleBlur,
+  handleChange,
 }) {
   return (
     <div className="flex flex-col gap-y-2">
@@ -15,7 +15,7 @@ export default function NumericalInput({
         className="rounded-md border border-gray-300 p-2"
         placeholder={placeholder}
         defaultValue={defaultValue}
-        onBlur={handleBlur}
+        onChange={handleChange}
       />
     </div>
   );
@@ -25,5 +25,5 @@ NumericalInput.propTypes = {
   id: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   defaultValue: PropTypes.number,
-  handleBlur: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
