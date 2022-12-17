@@ -108,6 +108,16 @@ export default function Main() {
             setTimeRemaining(timePerPeriod * 60);
           }}
         />
+
+        <Button
+          colorClass="bg-red-500"
+          text="Reset Board"
+          handleClick={() => {
+            setCurrentPeriod(0);
+            setIsTimerRunning(false);
+            setTimeRemaining(0);
+          }}
+        />
       </div>
     </main>
   );
