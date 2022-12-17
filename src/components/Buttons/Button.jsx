@@ -7,7 +7,7 @@ export default function Button({ text, handleClick }) {
       data-count={text}
       onClick={handleClick}
     >
-      Add {text}
+      {text}
     </button>
   );
 }

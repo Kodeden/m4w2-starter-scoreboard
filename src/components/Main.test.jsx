@@ -57,7 +57,7 @@ it("renders the correct buttons whenever a sport is selected", async () => {
   // Select the first actual choice (not the placeholder option)
   await user.selectOptions(select, choices[0]);
 
-  const buttons = screen.getAllByRole("button");
+  const buttons = screen.getAllByRole("button", { name: /[1-9]/ });
 
   expect(buttons).toHaveLength(CONFIG[0].buttons.length);
 });

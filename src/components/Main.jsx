@@ -3,6 +3,7 @@ import CONFIG from "../config";
 import Buttons from "./Buttons/Buttons";
 import { HomeAwaySwitch, NumericalInput, Select } from "./Form";
 import Scoreboard from "./Scoreboard";
+import Button from "./Buttons/Button";
 
 export default function Main() {
   const [buttons, setButtons] = useState([]);
@@ -67,6 +68,11 @@ export default function Main() {
         minutes={minutes}
         currentPeriod={currentPeriod}
       />
+
+      <div className="flex gap-x-8">
+        <Button text="Start" handleClick={() => {}} />
+        <Button text="Stop" handleClick={() => {}} />
+      </div>
     </main>
   );
 }
