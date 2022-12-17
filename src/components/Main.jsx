@@ -70,8 +70,8 @@ export default function Main() {
       />
 
       <div className="flex gap-x-8">
-        <Button text="Start" handleClick={() => {}} />
-        <Button text="Stop" handleClick={() => {}} />
+        <Button colorClass="bg-green-500" text="Start" handleClick={() => {}} />
+        <Button colorClass="bg-orange-500" text="Stop" handleClick={() => {}} />
       </div>
     </main>
   );
