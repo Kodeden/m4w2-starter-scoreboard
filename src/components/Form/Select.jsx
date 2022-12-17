@@ -4,7 +4,7 @@ export default function Select({ id, options, handleChange }) {
   return (
     <>
       <label htmlFor="sport-select" className="sr-only">
-        Choose a pet:
+        Choose a sport:
       </label>
       <select id={id} onChange={handleChange}>
         <option value="">--Please choose your sport--</option>
