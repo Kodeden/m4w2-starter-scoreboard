@@ -14,7 +14,7 @@ export default function Button({ colorClass, text, handleClick }) {
 
 Button.propTypes = {
   colorClass: PropTypes.string,
-  text: PropTypes.number.isRequired,
+  text: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   handleClick: PropTypes.func.isRequired,
 };
 
