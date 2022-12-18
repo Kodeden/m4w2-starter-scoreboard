@@ -1,19 +1,16 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import CONFIG from "../config";
-import Button from "./Buttons/Button";
-import Buttons from "./Buttons/Buttons";
-import { HomeAwaySwitch, NumericalInput, Select } from "./Form";
-import Scoreboard from "./Scoreboard";
+import Button from "../components/Buttons/Button";
+import Buttons from "../components/Buttons/Buttons";
+import { HomeAwaySwitch } from "../components/Form";
+import Scoreboard from "../components/Scoreboard";
 
-export default function Main() {
-  const [buttons, setButtons] = useState([]);
+export default function Display({ buttons, periods, timePerPeriod }) {
   const [homeAway, setHomeAway] = useState("away");
   const [awayScore, setAwayScore] = useState(0);
   const [homeScore, setHomeScore] = useState(0);
-  const [periods, setPeriods] = useState(0);
-  const [timePerPeriod, setTimePerPeriod] = useState(0);
-  const [currentPeriod, setCurrentPeriod] = useState(0);
-  const [timeRemaining, setTimeRemaining] = useState(0);
+  const [currentPeriod, setCurrentPeriod] = useState(1);
+  const [timeRemaining, setTimeRemaining] = useState(timePerPeriod * 60);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
   useEffect(() => {
@@ -29,36 +26,7 @@ export default function Main() {
   }, [timeRemaining, isTimerRunning]);
 
   return (
-    <main className="flex flex-col items-center gap-y-4 ">
-      <Select
-        id="sport-select"
-        options={CONFIG.map((sport) => sport.sport)}
-        handleChange={(e) => {
-          const selectedSport = CONFIG.find(
-            (sport) => sport.sport === e.target.value
-          );
-          setButtons(selectedSport.buttons);
-        }}
-      />
-
-      <NumericalInput
-        id="periods"
-        placeholder="Number of Periods"
-        defaultValue={periods}
-        handleChange={(e) => {
-          setPeriods(Math.floor(Number(e.target.value)));
-        }}
-      />
-
-      <NumericalInput
-        id="time"
-        placeholder="Time per period? (minutes)"
-        defaultValue={timeRemaining / 60}
-        handleChange={(e) => {
-          setTimePerPeriod(Number(e.target.value));
-        }}
-      />
-
+    <>
       <HomeAwaySwitch
         handleToggle={() => {
           setHomeAway((prev) => (prev === "home" ? "away" : "home"));
@@ -117,6 +85,12 @@ export default function Main() {
           }}
         />
       </div>
-    </main>
+    </>
   );
 }
+
+Display.propTypes = {
+  buttons: PropTypes.arrayOf(PropTypes.number).isRequired,
+  periods: PropTypes.number.isRequired,
+  timePerPeriod: PropTypes.number.isRequired,
+};
