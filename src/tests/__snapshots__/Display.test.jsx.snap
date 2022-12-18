@@ -1,0 +1,352 @@
+// Vitest Snapshot v1
+
+exports[`initial render 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <label
+        class="switch relative flex cursor-pointer items-center"
+        for="switch"
+      >
+        <span
+          class="mr-1 text-sm"
+          data-testid="home-toggle"
+        >
+          Home
+        </span>
+        <input
+          checked=""
+          class="sr-only"
+          id="switch"
+          type="checkbox"
+        />
+        <span
+          class="h-6 w-12 rounded-full bg-gray-800"
+        />
+        <span
+          class="ml-1 text-sm"
+          data-testid="away-toggle"
+        >
+          Away
+        </span>
+      </label>
+      <div
+        class="flex flex-row gap-x-4"
+      >
+        <button
+          class="rounded bg-blue-500 px-4 py-2 text-white"
+          data-count="1"
+        >
+          1
+        </button>
+        <button
+          class="rounded bg-blue-500 px-4 py-2 text-white"
+          data-count="2"
+        >
+          2
+        </button>
+        <button
+          class="rounded bg-blue-500 px-4 py-2 text-white"
+          data-count="3"
+        >
+          3
+        </button>
+      </div>
+      <section
+        class="flex flex-row gap-x-8"
+      >
+        <div
+          class="flex flex-col items-center"
+        >
+          <h2
+            class="text-2xl"
+          >
+            Home
+          </h2>
+          <p
+            class="text-4xl"
+            data-testid="home-score"
+          >
+            0
+          </p>
+        </div>
+        <div
+          class="flex flex-col items-center gap-y-4"
+        >
+          <div
+            class="flex flex-col items-center"
+          >
+            <h2
+              class="text-2xl"
+            >
+              Period
+            </h2>
+            <p
+              class="text-4xl"
+              data-testid="period"
+            >
+              1
+            </p>
+          </div>
+          <div
+            class="flex flex-col items-center"
+          >
+            <h2
+              class="text-2xl"
+            >
+              Time
+            </h2>
+            <p
+              class="text-4xl"
+              data-testid="time"
+            >
+              10:00
+            </p>
+          </div>
+        </div>
+        <div
+          class="flex flex-col items-center"
+        >
+          <h2
+            class="text-2xl"
+          >
+            Away
+          </h2>
+          <p
+            class="text-4xl"
+            data-testid="away-score"
+          >
+            0
+          </p>
+        </div>
+      </section>
+      <div
+        class="flex gap-x-8"
+      >
+        <button
+          class="rounded bg-green-500 px-4 py-2 text-white"
+          data-count="Start"
+        >
+          Start
+        </button>
+        <button
+          class="rounded bg-orange-500 px-4 py-2 text-white"
+          data-count="Stop"
+        >
+          Stop
+        </button>
+        <button
+          class="rounded bg-yellow-700 px-4 py-2 text-white"
+          data-count="Next Period"
+        >
+          Next Period
+        </button>
+        <button
+          class="rounded bg-red-500 px-4 py-2 text-white"
+          data-count="Reset Board"
+        >
+          Reset Board
+        </button>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <label
+      class="switch relative flex cursor-pointer items-center"
+      for="switch"
+    >
+      <span
+        class="mr-1 text-sm"
+        data-testid="home-toggle"
+      >
+        Home
+      </span>
+      <input
+        checked=""
+        class="sr-only"
+        id="switch"
+        type="checkbox"
+      />
+      <span
+        class="h-6 w-12 rounded-full bg-gray-800"
+      />
+      <span
+        class="ml-1 text-sm"
+        data-testid="away-toggle"
+      >
+        Away
+      </span>
+    </label>
+    <div
+      class="flex flex-row gap-x-4"
+    >
+      <button
+        class="rounded bg-blue-500 px-4 py-2 text-white"
+        data-count="1"
+      >
+        1
+      </button>
+      <button
+        class="rounded bg-blue-500 px-4 py-2 text-white"
+        data-count="2"
+      >
+        2
+      </button>
+      <button
+        class="rounded bg-blue-500 px-4 py-2 text-white"
+        data-count="3"
+      >
+        3
+      </button>
+    </div>
+    <section
+      class="flex flex-row gap-x-8"
+    >
+      <div
+        class="flex flex-col items-center"
+      >
+        <h2
+          class="text-2xl"
+        >
+          Home
+        </h2>
+        <p
+          class="text-4xl"
+          data-testid="home-score"
+        >
+          0
+        </p>
+      </div>
+      <div
+        class="flex flex-col items-center gap-y-4"
+      >
+        <div
+          class="flex flex-col items-center"
+        >
+          <h2
+            class="text-2xl"
+          >
+            Period
+          </h2>
+          <p
+            class="text-4xl"
+            data-testid="period"
+          >
+            1
+          </p>
+        </div>
+        <div
+          class="flex flex-col items-center"
+        >
+          <h2
+            class="text-2xl"
+          >
+            Time
+          </h2>
+          <p
+            class="text-4xl"
+            data-testid="time"
+          >
+            10:00
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex flex-col items-center"
+      >
+        <h2
+          class="text-2xl"
+        >
+          Away
+        </h2>
+        <p
+          class="text-4xl"
+          data-testid="away-score"
+        >
+          0
+        </p>
+      </div>
+    </section>
+    <div
+      class="flex gap-x-8"
+    >
+      <button
+        class="rounded bg-green-500 px-4 py-2 text-white"
+        data-count="Start"
+      >
+        Start
+      </button>
+      <button
+        class="rounded bg-orange-500 px-4 py-2 text-white"
+        data-count="Stop"
+      >
+        Stop
+      </button>
+      <button
+        class="rounded bg-yellow-700 px-4 py-2 text-white"
+        data-count="Next Period"
+      >
+        Next Period
+      </button>
+      <button
+        class="rounded bg-red-500 px-4 py-2 text-white"
+        data-count="Reset Board"
+      >
+        Reset Board
+      </button>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
