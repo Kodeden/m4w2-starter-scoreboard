@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "../App";
 import CONFIG from "../config";
@@ -45,4 +45,24 @@ it("limits the periods correctly", async () => {
   await user.click(nextPeriodBtn);
 
   expect(periodP).toHaveTextContent("2");
+});
+
+it("starts with the correct MM:SS", async () => {
+  const user = userEvent.setup();
+  render(<App />);
+
+  const minutesInput = screen.getByLabelText("Minutes");
+  const goBtn = screen.getByRole("button", { name: "Go!" });
+
+  await user.type("2", minutesInput);
+  await user.click(goBtn);
+
+  const startBtn = await screen.findByRole("button", { name: "Start" });
+  const timeDisplay = await screen.findByTestId("time");
+
+  await user.click(startBtn);
+
+  await waitFor(() => {
+    expect(timeDisplay).toHaveTextContent("2:00");
+  });
 });
