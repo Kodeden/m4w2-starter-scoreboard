@@ -24,3 +24,25 @@ it("renders the correct buttons whenever a sport is selected", async () => {
 
   expect(buttons).toHaveLength(CONFIG[0].buttons.length);
 });
+
+it("limits the periods correctly", async () => {
+  const user = userEvent.setup();
+  render(<App />);
+
+  const periodsInput = screen.getByLabelText("Periods");
+  const goBtn = screen.getByRole("button", { name: "Go!" });
+
+  await user.type("2", periodsInput);
+  await user.click(goBtn);
+
+  const nextPeriodBtn = await screen.findByRole("button", {
+    name: "Next Period",
+  });
+  const periodP = await screen.findByTestId("period");
+
+  // Click the next period button twice. It should still show '2'.
+  await user.click(nextPeriodBtn);
+  await user.click(nextPeriodBtn);
+
+  expect(periodP).toHaveTextContent("2");
+});
