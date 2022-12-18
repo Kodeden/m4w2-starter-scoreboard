@@ -113,9 +113,7 @@ export default function Main() {
           colorClass="bg-red-500"
           text="Reset Board"
           handleClick={() => {
-            setCurrentPeriod(0);
-            setIsTimerRunning(false);
-            setTimeRemaining(0);
+            window.location.reload(false);
           }}
         />
       </div>
