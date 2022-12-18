@@ -144,6 +144,29 @@ it("should start the timer", async () => {
   });
 });
 
+it("advances the period only up to the max periods", async () => {
+  const user = userEvent.setup();
+  render(<Main />);
+
+  // ⚠️ Be sure to allow for periods
+  const periodsInput = screen.getByLabelText("Number of Periods");
+
+  const nextPeriodBtn = screen.getByRole("button", { name: "Next Period" });
+  const periodP = screen.getByTestId("period");
+
+  await user.type(periodsInput, "2");
+
+  await user.click(nextPeriodBtn);
+  expect(periodP).toHaveTextContent("1");
+
+  await user.click(nextPeriodBtn);
+  expect(periodP).toHaveTextContent("2");
+
+  // Limited to 2 periods ☝️
+  await user.click(nextPeriodBtn);
+  expect(periodP).toHaveTextContent("2");
+});
+
 describe("Timer 🤡", () => {
   beforeAll(() => {
     vi.useFakeTimers();
@@ -244,5 +267,34 @@ describe("Timer 🤡", () => {
     await waitFor(() => {
       expect(timeDisplay).toHaveTextContent("0:20");
     });
+  });
+
+  it("resets the time display when period is advanced", async () => {
+    const user = userEvent.setup({ delay: null });
+    render(<Main />);
+
+    // ⚠️ Be sure to allow for periods
+    const periodsInput = screen.getByLabelText("Number of Periods");
+    const minutesInput = screen.getByLabelText("Time per period? (minutes)");
+
+    const startBtn = screen.getByRole("button", { name: "Start" });
+    const nextPeriodBtn = screen.getByRole("button", { name: "Next Period" });
+
+    const timeDisplay = screen.getByTestId("time");
+
+    //  Allow for 2 periods of 1 minute each
+    await user.type(periodsInput, "2");
+    await user.type(minutesInput, "1");
+
+    await user.click(startBtn);
+
+    //  Run 🏃🏾‍♂️ out the first timer (timer should be at 0:00 as per previous test)
+    act(() => {
+      vi.advanceTimersByTime(10000);
+    });
+
+    await user.click(nextPeriodBtn);
+
+    expect(timeDisplay).toHaveTextContent("1:00");
   });
 });
