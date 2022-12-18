@@ -1,29 +1,20 @@
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../components/Buttons/Button";
 import Buttons from "../components/Buttons/Buttons";
 import { HomeAwaySwitch } from "../components/Form";
 import Scoreboard from "../components/Scoreboard";
+import useTimer from "../hooks/useTimer";
 
 export default function Display({ buttons, periods, timePerPeriod }) {
   const [homeAway, setHomeAway] = useState("away");
   const [awayScore, setAwayScore] = useState(0);
   const [homeScore, setHomeScore] = useState(0);
   const [currentPeriod, setCurrentPeriod] = useState(1);
-  const [timeRemaining, setTimeRemaining] = useState(timePerPeriod * 60);
-  const [isTimerRunning, setIsTimerRunning] = useState(false);
 
-  useEffect(() => {
-    if (isTimerRunning && timeRemaining > 0) {
-      const id = setInterval(() => {
-        setTimeRemaining((prev) => prev - 1);
-      }, 1000);
-
-      return () => {
-        clearInterval(id);
-      };
-    }
-  }, [timeRemaining, isTimerRunning]);
+  const [timeRemaining, setTimeRemaining, setIsTimerRunning] = useTimer(
+    timePerPeriod * 60
+  );
 
   return (
     <>
