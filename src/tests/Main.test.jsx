@@ -145,8 +145,21 @@ it("should start the timer", async () => {
 });
 
 describe("Timer 🤡", () => {
-  beforeEach(() => {
+  beforeAll(() => {
     vi.useFakeTimers();
+  });
+
+  /**
+   * When using fake timers, you need to remember to restore the timers after your test runs.
+   *
+   * The main reason to do that is to prevent 3rd party libraries running after your test finishes (e.g cleanup
+   * functions), from being coupled to your fake timers and use real timers instead.
+   *
+   * For that you usually call useRealTimers...
+   * https://testing-library.com/docs/using-fake-timers/
+   */
+  afterAll(() => {
+    vi.useRealTimers();
   });
 
   test("timer reflects MM:SS accurately", async () => {
