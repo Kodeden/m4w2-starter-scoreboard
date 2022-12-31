@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { prettyDOM, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "../App";
 import CONFIG from "../config";
@@ -29,10 +29,10 @@ it("limits the periods correctly", async () => {
   const user = userEvent.setup();
   render(<App />);
 
-  const periodsInput = screen.getByLabelText("Periods");
+  const periodsInput = screen.getByLabelText(/Periods/i);
   const goBtn = screen.getByRole("button", { name: "Go!" });
 
-  await user.type("2", periodsInput);
+  await user.type(periodsInput, "2");
   await user.click(goBtn);
 
   const nextPeriodBtn = await screen.findByRole("button", {
@@ -51,10 +51,10 @@ it("starts with the correct MM:SS", async () => {
   const user = userEvent.setup();
   render(<App />);
 
-  const minutesInput = screen.getByLabelText("Minutes");
+  const minutesInput = screen.getByLabelText(/Minutes/i);
   const goBtn = screen.getByRole("button", { name: "Go!" });
 
-  await user.type("2", minutesInput);
+  await user.type(minutesInput, "2");
   await user.click(goBtn);
 
   const startBtn = await screen.findByRole("button", { name: "Start" });
