@@ -1,12 +1,18 @@
-import { useState } from "react";
+import useApp from "./hooks/useApp";
 import Display from "./routes/Display";
 import Setup from "./routes/Setup";
 
 function App() {
-  const [gameOn, setGameOn] = useState(false);
-  const [buttons, setButtons] = useState([]);
-  const [periods, setPeriods] = useState(1);
-  const [timePerPeriod, setTimePerPeriod] = useState(0);
+  const [
+    gameOn,
+    setGameOn,
+    buttons,
+    setButtons,
+    periods,
+    setPeriods,
+    timePerPeriod,
+    setTimePerPeriod,
+  ] = useApp();
 
   return (
     // Using shorthand for a React Fragment
