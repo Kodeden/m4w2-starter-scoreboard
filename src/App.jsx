@@ -22,18 +22,18 @@ function App() {
       </h1>
 
       <main className="flex flex-col items-center gap-y-4">
-        {!gameOn ? (
+        {gameOn ? (
+          <Display
+            buttons={buttons}
+            periods={periods}
+            timePerPeriod={timePerPeriod}
+          />
+        ) : (
           <Setup
             setButtons={setButtons}
             setPeriods={setPeriods}
             setTimePerPeriod={setTimePerPeriod}
             setGameOn={setGameOn}
-          />
-        ) : (
-          <Display
-            buttons={buttons}
-            periods={periods}
-            timePerPeriod={timePerPeriod}
           />
         )}
       </main>
